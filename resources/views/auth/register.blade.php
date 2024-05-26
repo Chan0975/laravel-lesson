@@ -1,24 +1,30 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
+    <form method="POST" action="{{ route('register') }}" class="row g-3 needs-validation">
         @csrf
+
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="pt-4 pb-2">
+                    <h5 class="card-title text-center pb-0 fs-4">Register</h5>
+                </div>
 
         <!-- Name -->
         <div class="col-12">
-            <x-input-label for="name" :value="__('Name')" class="form-label"/>
+            <x-input-label for="name" :value="__('Name')" class="form-label" />
             <x-text-input id="name" class="form-control" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="invalid-feedback" />
         </div>
 
         <!-- Email Address -->
         <div class="col-12">
-            <x-input-label for="email" :value="__('Email')" class="form-label"/>
+            <x-input-label for="email" :value="__('Email')" class="form-label" />
             <x-text-input id="email" class="form-control" type="email" name="email" :value="old('email')" required autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="invalid-feedback" />
         </div>
 
         <!-- Password -->
         <div class="col-12">
-            <x-input-label for="password" :value="__('Password')" class="form-label"/>
+            <x-input-label for="password" :value="__('Password')" class="form-label" />
 
             <x-text-input id="password" class="form-control"
                             type="password"
@@ -30,7 +36,7 @@
 
         <!-- Confirm Password -->
         <div class="col-12">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" class="form-label"/>
+            <x-input-label for="password_confirmation" :value="__('Confirm Password')" class="form-label" />
 
             <x-text-input id="password_confirmation" class="form-control"
                             type="password"
@@ -39,13 +45,16 @@
             <x-input-error :messages="$errors->get('password_confirmation')" class="invalid-feedback" />
         </div>
 
-        
-        <div class="col-12">
-                      <button class="btn btn-primary w-100" type="submit">Create Account</button>
-                    </div>
-                    <div class="col-12">
-                      <p class="small mb-0">Already have an account? <a href="pages-login.html">Log in</a></p>
-                    </div>
+                <div class="flex items-center justify-end mt-4">
+                    <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
+                        {{ __('Already registered?') }}
+                    </a>
 
+                    <x-primary-button class="btn btn-primary w-100">
+                        {{ __('Register') }}
+                    </x-primary-button>
+                </div>
+            </div>
+        </div>
     </form>
 </x-guest-layout>
